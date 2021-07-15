@@ -1,5 +1,5 @@
 import data from './data/SongData.js';
-import SongData from './components/songList.js'
+import SongData from './components/SongDetail/songList.js'
 
 function App() {
   return (

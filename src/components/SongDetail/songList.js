@@ -1,4 +1,5 @@
-import Link from "./Link";
+import Link from "../Link/Link";
+import './style-list.css';
 
 export default function SongData({data}){
     const{
@@ -13,7 +14,7 @@ export default function SongData({data}){
     const handleSelect = () =>alert("You choose this song");
 
     return(
-        <div>
+        <div className= "App">
             <img src={image.url} alt={albumName}></img>
             <Link to={external_urls.spotify} isExternal>
             <h3>{name}</h3>
