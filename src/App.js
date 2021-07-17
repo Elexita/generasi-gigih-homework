@@ -1,11 +1,14 @@
+import Card from './components/Card/index.js';
 import data from './data/SongData.js';
-import SongData from './components/SongDetail/songList.js'
+import style from './App.css';
 
 function App() {
   return (
     <div className="App">
+      <div className="wrapper">
       <h1> CREATE PLAYLIST</h1>
-      <SongData data ={data}/>
+      <Card data ={data}/>
+      </div>
     </div>
   );
 }

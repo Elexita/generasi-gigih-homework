@@ -1,0 +1,36 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  padding: ;
+}
+.card {
+  width: 190px;
+  height: 180px;
+  margin: 15px;
+  position: center;
+  min-width: 190px;
+  background: #000;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+}
+.card .songTitle {
+  width: 100%;
+  text-align: left;
+  margin-top: 180px;
+  margin-bottom: 0px;
+}
+
+.card .title {
+  top: -175px;
+  color: #fff;
+  position: relative;
+  font-size: 13px;
+  text-decoration: none;
+}

@@ -1,23 +1,25 @@
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.App {
+  background: linear-gradient(to right, #06e2ffd5, #3578ff);
+  font-family: spotify-circular, Helvetica Neue, Helvetica, Arial,
+    Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
+}
+
+.wrapper {
+  margin-top: 50px;
+}
+.wrapper_section_2 {
+  margin-top: 10px;
+}
+.wrapper h1 {
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
 }
 
 @keyframes App-logo-spin {
