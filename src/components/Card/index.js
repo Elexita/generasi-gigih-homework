@@ -1,9 +1,9 @@
 import SongCard from "../Songcard";
-const Card = ({data})=>{
+
+const Card = ({ data }) => {
     return (
         <div>
-            {data.map((music)=>(
-                <SongCard key={music.id} data={music}/>
+                <SongCard key={music.id} data={music} />
             ))}
         </div>
     );
