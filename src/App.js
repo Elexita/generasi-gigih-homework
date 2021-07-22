@@ -1,12 +1,9 @@
-import Index from "./Pages/index.js";
+import Index from "./Pages";
 
 function App() {
   return (
     <div>
-      <div>
-        <h1> CREATE PLAYLIST</h1>
-        <Index></Index>
-      </div>
+      <Index />
     </div>
   );
 }

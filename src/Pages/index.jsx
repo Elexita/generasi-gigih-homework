@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { getProfile, getSearchTrack } from "./components/SpotifyGet/Spotify";
-import Navbar from "../components/Navbar/index";
-import data from "../data/SongData";
-import SongCard from "../components/Card";
-import { callback } from "./components/LoginPage/LoginPage";
+import { useEffect, useState } from "react";
+import NavBar from "../components/NavBar/index.jsx";
+import Card from "../components/Card/index.jsx";
+import initData from "../data/SongData";
+import { getProfile, getSearchTrack} from "./components/Auth/auth.js";
+import { callback} from "./components/LoginPage/LoginPage.js";
 
-const Index = () => {
-  const [trackList, setTrackList] = useState(data);
+function Index() {
+  const [trackList, setTrackList] = useState(initData);
   const [auth, setAuth] = useState(false);
   const [userData, setUserData] = useState({});
   useEffect(() => {
@@ -16,8 +16,10 @@ const Index = () => {
       getProfile(payload.access_token).then((res) => {
         setUserData(res);
       });
+
     }
   }, []);
+
   const handleSearch = (query) => {
     const options = {
       q: query,
@@ -28,12 +30,13 @@ const Index = () => {
       setTrackList(res.tracks.items);
     });
   };
+
   return (
     <>
-      <Navbar userData={{ ...userData, ...auth }} handleSearch={handleSearch} />
-      <SongCard data={trackList} />
+      <NavBar userData={{ ...userData, ...auth }} handleSearch={handleSearch} />
+      <Card data={trackList} />
     </>
   );
-};
+}
 
 export default Index;
