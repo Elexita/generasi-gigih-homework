@@ -2,7 +2,10 @@ import Link from "../Link/Link";
 import Button from "../Button";
 import "./style.css";
 
-const SongCard = ({ data }) => {
+
+
+
+const SongCard = ({ data, isSelect, handleSelect }) => {
   const { album, artists, external_urls, name } = data;
 
   const artistName = artists.map((artist, idx) => {
@@ -35,12 +38,12 @@ const SongCard = ({ data }) => {
         </div>
         <div>
           <Button
+          variant = {isSelect ? "gray" : "default"}
             onClick={() => {
-              alert(data.id);
+              handleSelect(data.uri);
             }}
           >
-            {" "}
-            Select{" "}
+            {isSelect ? "Selected" : "Select"}
           </Button>
         </div>
       </div>
