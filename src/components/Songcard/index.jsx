@@ -3,9 +3,7 @@ import Button from "../Button";
 import "./style.css";
 
 
-
-
-const SongCard = ({ data, isSelect, handleSelect }) => {
+const SongCard = ({ data, isSelected, handleSelect }) => {
   const { album, artists, external_urls, name } = data;
 
   const artistName = artists.map((artist, idx) => {
@@ -24,7 +22,7 @@ const SongCard = ({ data, isSelect, handleSelect }) => {
     <div className="cards">
       <div className="card">
         <Link href={album.external_urls.spotify}>
-          <img src={album.images[0].url} alt={album.name} />
+          <img src={album.images[1].url} alt={album.name} />
         </Link>
       </div>
       <div>
@@ -37,13 +35,11 @@ const SongCard = ({ data, isSelect, handleSelect }) => {
           </h5>
         </div>
         <div>
-          <Button
-          variant = {isSelect ? "gray" : "default"}
-            onClick={() => {
-              handleSelect(data.uri);
-            }}
+        <Button
+            variant={isSelected ? "blue" : "default"}
+            onClick={() => handleSelect(data.uri)}
           >
-            {isSelect ? "Selected" : "Select"}
+            {isSelected ? "Selected" : "Select"}
           </Button>
         </div>
       </div>

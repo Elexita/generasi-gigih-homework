@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar/index.jsx";
 import Card from "../components/Card/index.jsx";
 import initData from "../data/SongData";
-import { getProfile, getSearchTrack} from "./components/Auth/auth.js";
+import { getProfile, getSearchTrack} from "./components/Auth/spotify";
 import { callback} from "./components/LoginPage/LoginPage.js";
 
 function Index() {
@@ -34,7 +34,7 @@ function Index() {
   return (
     <>
       <NavBar userData={{ ...userData, ...auth }} handleSearch={handleSearch} />
-      <Card data={trackList} />
+      <Card data={trackList} userData={{...userData, ...auth}} />
     </>
   );
 }

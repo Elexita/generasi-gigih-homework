@@ -20,25 +20,4 @@ const loginClick = () => {
   window.location = `${SPOTIFY_AUTHO_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&scope=${SCOPES_URL_PARAM}&response_type=token&showdialog=true`;
 };
 
-//Search, profile API
-const API_BASE = "https://api.spotify.com/v1";
-
-const getProfile = (accessToken) => {
-  return fetch(API_BASE + "/me", {
-    headers: {
-      Authorization: "Bearer " + accessToken,
-    },
-  }).then((res) => res.json());
-};
-
-const getSearchTrack = (accessToken, options) => {
-  const params = new URLSearchParams(options).toString();
-  return fetch(`${API_BASE}/search?${params}`, {
-    headers: {
-      Authorization: "Bearer " + accessToken,
-    },
-  }).then((res) => res.json());
-};
-
-export { getProfile, getSearchTrack };
 export { getReturnedParamsFromSpotifyAuth, loginClick };
