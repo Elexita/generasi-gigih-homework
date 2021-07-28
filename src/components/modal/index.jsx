@@ -1,8 +1,9 @@
 import {createPortal} from "react-dom";
 import { useEffect, useState } from "react";
 import Button from "../Button";
+import style from "./style.module.css";
 
-const ModalsPlaylist =({isOpen, onClose, makePlaylist}) => {
+const ModalsPlaylist =({isOpen, onClose, makePlaylist, isLoading}) => {
     const [payload, setPayload] = useState({
         name: "",
         description: "",
@@ -42,47 +43,49 @@ const ModalsPlaylist =({isOpen, onClose, makePlaylist}) => {
 return (
     isOpen &&
     createPortal(
-      <div>
-        <div />
-        <div >
-            <div >
-            <h3 >Create playlist</h3>
-            <button onClick={() => onClose()}>
+      <div className={style.container}>
+        <div>
+        <div className={style.content}>
+            <div className={style.header}>
+            <h3 className={style.title}> Create playlist</h3>
+            <button className={style.close} onClick={() => onClose()}>c
             </button>
           </div>
-          <div>
+          <div className={style.body}>
             <form id="createPlaylistForm" onSubmit={handleSubmit}>
-              <div >
+              <div className={style.controlf}>
                 <label htmlFor="name">Name</label>
                 <input
                   id="name"
                   name="name"
                   placeholder="Playlist Name"
-                  min="10"
+                  minLength="10"
                   onChange={handleChange}
                 />
               </div>
-              <div >
+              <div className={style.controlf}>
                 <label htmlFor="description">Description</label>
                 <textarea
                   rows={5}
                   id="description"
                   name="description"
                   placeholder="Description"
-                  min="20"
+                  minLength="20"
                   onChange={handleChange}
                 />
               </div>
             </form>
           </div>
-          <div >
+          <div className={style.footerb}>
             <Button
+            isLoading={isLoading}
               form="createPlaylistForm"
               style={{ marginLeft: "auto" }}
             >
               Save
             </Button>
           </div>
+        </div>
         </div>
       </div>,
       document.body

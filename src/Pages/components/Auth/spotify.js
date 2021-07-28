@@ -18,15 +18,16 @@ const getSearchTrack = (accessToken, options) => {
   }).then((res) => res.json());
 };
 
-const makePlaylist = (accessToken, userId, payload) => {
-  return fetch(`${WEB_API}/users/${userId}/playlist`, {
+const makePlaylist = async (accessToken, userId, payload) => {
+  const result = await fetch(`${WEB_API}/users/${userId}/playlist`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + accessToken,
     },
     body: JSON.stringify(payload),
-  }).then((result) => result.json());
+  });
+  return await result.json();
 };
 
 const addSongs = (accessToken, playlisId, payload) => {

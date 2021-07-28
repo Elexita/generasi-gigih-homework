@@ -2,8 +2,10 @@ import SearchBar from "../SearchBar";
 import Profile from "../Profile/profile";
 import { LoginPage } from "../../Pages/components/LoginPage/LoginPage";
 
-const NavBar = ({ userData, handleSearch }) => {
-  const isAuthen = userData?.access_token !== undefined;
+
+
+const NavBar = ({ handleSearch, isLoading}) => {
+  const {isAuthen, user} = user;
   return (
     <div>
       {!isAuthen ?(
@@ -12,8 +14,8 @@ const NavBar = ({ userData, handleSearch }) => {
         </>
       ):(
         <>
-        <SearchBar handleSearch={handleSearch}/>
-        <Profile userData={userData}></Profile>
+        <SearchBar isLoading={isLoading} handleSearch={handleSearch}/>
+        <Profile userData={user}></Profile>
       </>
       )}
       

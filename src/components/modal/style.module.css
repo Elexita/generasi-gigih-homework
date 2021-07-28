@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  align-items: center;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  position: fixed;
+  background: rgba(18, 2, 63, 0.151);
+  backdrop-filter: blur(10px);
+  z-index: 1500;
+}
+.title {
+  margin: 0px;
+}
+.content {
+  border-radius: 5px;
+  background-color: #727272;
+  padding: 1em;
+  margin: 0 auto;
+  min-width: 360px;
+  max-width: 500px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close {
+  cursor: pointer;
+  font-size: 18px;
+  background-color: unset;
+  border: none;
+  color: rgb(255, 255, 255);
+  width: 25px;
+  height: 25px;
+}
+
+.controlf {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.controlf label {
+  position: absolute;
+  border-radius: 5px;
+  top: -7px;
+  left: 5px;
+  font-size: 0.8em;
+  color: #bbbbbb;
+}
+.controlf input,
+textarea {
+  border-radius: 5px;
+  border: none;
+  padding: 1em;
+  color: white;
+  background-color: #1d0085;
+  outline: none;
+  resize: none;
+  font: inherit;
+}
+.controlf input {
+  border-radius: 5px;
+  border: none;
+  padding: 1em;
+  background-color: #1d0085;
+}
+
+.body {
+  margin-top: 10px;
+}
+.footerb {
+  margin-top: 10px;
+}

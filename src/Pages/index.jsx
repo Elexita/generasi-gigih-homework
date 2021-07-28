@@ -3,12 +3,14 @@ import NavBar from "../components/NavBar/index.jsx";
 import Card from "../components/Card/index.jsx";
 import initData from "../data/SongData";
 import { getProfile, getSearchTrack} from "./components/Auth/spotify";
-import { callback} from "./components/LoginPage/LoginPage.js";
+import { callback } from "./components/LoginPage/LoginPage.js";
 
 function Index() {
   const [trackList, setTrackList] = useState(initData);
   const [auth, setAuth] = useState(false);
   const [userData, setUserData] = useState({});
+
+  
   useEffect(() => {
     const payload = callback();
     if (payload) {

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import Button from "../../../components/Button";
 import { getReturnedParamsFromSpotifyAuth, loginClick } from "../Auth/auth.js";
+import { useDispatch, useSelector } from "react-redux";
+import { getToken } from "../../../Feature/token/token";
 
 const callback = () => {
   let hashParams = {};
@@ -14,15 +16,21 @@ const callback = () => {
 };
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
+  const Token = useSelector((state) => state.token.token);
+
   useEffect(() => {
     if (window.location.hash) {
-      const { access_token, expires_in, token_type } =
-        getReturnedParamsFromSpotifyAuth(window.location.hash);
-      localStorage.clear();
+      const access_token = getReturnedParamsFromSpotifyAuth(
+        window.location.hash
+      );
+      dispatch(getToken(access_token));
+    }
+  }, []);
 
-      localStorage.setItem("accessToken", access_token);
-      localStorage.setItem("tokenType", token_type);
-      localStorage.setItem("expiresIn", expires_in);
+  useEffect(() => {
+    if (Token !== "") {
+      loginClick();
     }
   });
 

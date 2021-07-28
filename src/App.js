@@ -1,11 +1,15 @@
 import Index from "./Pages";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import store from "./app/store";
 
 function App() {
   return (
     <div>
-      <Index />
-      <Toaster position="bottom-center" reverseOrder={false}></Toaster>
+      <Provider store={store}>
+        <Index />
+        <Toaster position="bottom-center"></Toaster>
+      </Provider>
     </div>
   );
 }
