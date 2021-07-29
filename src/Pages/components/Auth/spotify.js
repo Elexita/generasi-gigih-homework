@@ -9,7 +9,7 @@ const getProfile = (accessToken) => {
   }).then((res) => res.json());
 };
 
-const getSearchTrack = (accessToken, options) => {
+const getSearchSong = (accessToken, options) => {
   const params = new URLSearchParams(options).toString();
   return fetch(`${WEB_API}/search?${params}`, {
     headers: {
@@ -41,4 +41,4 @@ const addSongs = (accessToken, playlisId, payload) => {
   }).then((result) => result.json());
 };
 
-export { getProfile, getSearchTrack, makePlaylist, addSongs };
+export { getProfile, getSearchSong, makePlaylist, addSongs };

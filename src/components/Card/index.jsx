@@ -11,7 +11,7 @@ const Card = ({ data, userData }) => {
   
     const isEmpty = selectSong.length === 0;
     const isAuth = userData.access_token !== undefined;
-    const [isModalOpen, setModalOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
     const { access_token, id: user_id } = userData;
   
     const handleCreatePlaylist = (payload) => {
@@ -42,7 +42,7 @@ const Card = ({ data, userData }) => {
         <ModalsPlaylist
           isLoading={isLoading}
           makePlaylist={handleCreatePlaylist}
-          isOpen={isModalOpen}
+          isOpen={modalOpen}
           onClose={() => {
             setModalOpen(false);
           }}

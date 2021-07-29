@@ -4,8 +4,8 @@ import { LoginPage } from "../../Pages/components/LoginPage/LoginPage";
 
 
 
-const NavBar = ({ handleSearch, isLoading}) => {
-  const {isAuthen, user} = user;
+const NavBar = ({ handleSearch, userData}) => {
+  const {isAuthen, user} = userData;
   return (
     <div>
       {!isAuthen ?(
@@ -14,8 +14,8 @@ const NavBar = ({ handleSearch, isLoading}) => {
         </>
       ):(
         <>
-        <SearchBar isLoading={isLoading} handleSearch={handleSearch}/>
-        <Profile userData={user}></Profile>
+      <SearchBar handleSearch={handleSearch}/>
+      <Profile userData={user}></Profile>
       </>
       )}
       

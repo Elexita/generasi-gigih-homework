@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import NavBar from "../components/NavBar/index.jsx";
 import Card from "../components/Card/index.jsx";
 import initData from "../data/SongData";
-import { getProfile, getSearchTrack} from "./components/Auth/spotify";
-import { callback } from "./components/LoginPage/LoginPage.js";
+import { getProfile, getSearchSong} from "./components/Auth/spotify";
+import { callback, getReturnedParamsFromSpotifyAuth } from "./components/LoginPage/LoginPage.js";
 
 function Index() {
   const [trackList, setTrackList] = useState(initData);
@@ -28,7 +28,7 @@ function Index() {
       type: "track",
       limit: 12,
     };
-    getSearchTrack(auth.access_token, options).then((res) => {
+    getSearchSong(auth.access_token, options).then((res) => {
       setTrackList(res.tracks.items);
     });
   };
