@@ -12,10 +12,13 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.isAuth = action.payload;
+    },
+    setToken: (state, action) => {
       state.accesToken = action.payload;
+      state.isAuth = true;
     },
   },
 });
 
-export const { login } = userSlice.actions;
+export const { login, setToken } = userSlice.actions;
 export default userSlice.reducer;

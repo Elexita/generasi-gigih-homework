@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Button from "../../../components/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../Feature/user/user";
+import { setToken } from "../../../Feature/user/user";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const SPOTIFY_AUTHO_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -15,6 +15,7 @@ const SCOPES = [
 const SCOPES_URL_PARAM = SCOPES.join(SPACE_DELIMITER);
 
 const getReturnedParamsFromSpotifyAuth = (hash) => {
+  console.log("hash:", hash);
   const stringAfterHashtag = hash.substring(1);
   const paramsInUrl = stringAfterHashtag.split("&");
   const paramsSplit = paramsInUrl.reduce((accumulator, currentValue) => {
@@ -41,18 +42,6 @@ const callback = () => {
 };
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.user.isAuth);
-
-  useEffect(() => {
-    if (!isAuth && window.location.hash) {
-      const access_token = getReturnedParamsFromSpotifyAuth(
-        window.location.hash
-      );
-      dispatch(login(access_token));
-    }
-  }, []);
-
   return (
     <div>
       <h1>Hello!</h1>
