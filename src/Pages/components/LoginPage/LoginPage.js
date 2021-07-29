@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
 import Button from "../../../components/Button";
-import { useDispatch, useSelector } from "react-redux";
-import { setToken } from "../../../Feature/user/user";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const SPOTIFY_AUTHO_ENDPOINT = "https://accounts.spotify.com/authorize";

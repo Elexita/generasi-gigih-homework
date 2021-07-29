@@ -4,18 +4,24 @@ import ModalsPlaylist from "../modal";
 import SongCard from "../Songcard";
 import Button from "../Button";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
 
-const Card = ({ data, userData }) => {
+const Card = ({ data }) => {
     const { selectSong, checkSelect, handleSelect, makePlaylist, isLoading } =
       PagePlaylist();
-  
+
+      const userID = useSelector(state => state.user.user.id);
+      const accessToken = useSelector(state => state.user.accessToken);
+      const isAuth = useSelector(state => state.user.isAuth);
+
+
     const isEmpty = selectSong.length === 0;
-    const isAuth = userData.access_token !== undefined;
     const [modalOpen, setModalOpen] = useState(false);
-    const { access_token, id: user_id } = userData;
+
+
   
     const handleCreatePlaylist = (payload) => {
-        makePlaylist(access_token, user_id, payload).then(() => {
+        makePlaylist(accessToken, userID, payload).then(() => {
           setModalOpen(false);
           toast.success("Playlist Created", {
             duration: 4000,
@@ -47,6 +53,7 @@ const Card = ({ data, userData }) => {
             setModalOpen(false);
           }}
         />
+
         {isAuth&& !isEmpty && (
           <div style={{ position: "fixed", bottom: 18, right: 18 }}>
             <Button

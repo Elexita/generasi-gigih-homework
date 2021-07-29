@@ -18,8 +18,8 @@ const getSearchSong = (accessToken, options) => {
   }).then((res) => res.json());
 };
 
-const makePlaylist = async (accessToken, userId, payload) => {
-  const result = await fetch(`${WEB_API}/users/${userId}/playlist`, {
+const makePlaylist = async (accessToken, userID, payload) => {
+  const result = await fetch(`${WEB_API}/users/${userID}/playlists`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,8 +30,8 @@ const makePlaylist = async (accessToken, userId, payload) => {
   return await result.json();
 };
 
-const addSongs = (accessToken, playlisId, payload) => {
-  return fetch(`${WEB_API}/playlists/${playlisId}/tracks`, {
+const addSongs = (accessToken, playlistId, payload) => {
+  return fetch(`${WEB_API}/playlists/${playlistId}/tracks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

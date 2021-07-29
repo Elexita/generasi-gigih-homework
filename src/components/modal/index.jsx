@@ -2,13 +2,19 @@ import {createPortal} from "react-dom";
 import { useEffect, useState } from "react";
 import Button from "../Button";
 import style from "./style.module.css";
+import { addSongs, makePlaylist } from "../../Pages/components/Auth/spotify";
+import {useSelector} from "react-redux";
 
-const ModalsPlaylist =({isOpen, onClose, makePlaylist, isLoading}) => {
+const ModalsPlaylist =({isOpen, onClose, isLoading}) => {
+  const userID = useSelector(state => state.user.user.id);
+  const accessToken = useSelector(state => state.user.accesToken);
+
+
     const [payload, setPayload] = useState({
         name: "",
         description: "",
         public: false,
-    collaborative: false,
+        collaborative: false,
       });
 
       const handleChange = (e) => {
@@ -19,9 +25,12 @@ const ModalsPlaylist =({isOpen, onClose, makePlaylist, isLoading}) => {
       const handleSubmit = (e) => {
         e.preventDefault();
         console.log(payload);
+        makePlaylist(accessToken, userID, payload)
+        .then((res) => {
+          console.log(res);
+          addSongs(accessToken, res.id, payload);
+        })
       };
-
-
 
     useEffect(() => {
         const handleClick = (e) => {
@@ -78,7 +87,8 @@ return (
           </div>
           <div className={style.footerb}>
             <Button
-            isLoading={isLoading}
+              isLoading={isLoading}
+              type="submit"
               form="createPlaylistForm"
               style={{ marginLeft: "auto" }}
             >

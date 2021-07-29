@@ -5,12 +5,11 @@ import initData from "../data/SongData";
 import { getProfile, getSearchSong} from "./components/Auth/spotify";
 import { getReturnedParamsFromSpotifyAuth } from "./components/LoginPage/LoginPage.js";
 import { useDispatch, useSelector} from "react-redux";
-import { setToken } from "../Feature/user/user";
+import { setToken,setUserData } from "../Feature/user/user";
 
 function Index() {
   const [trackList, setTrackList] = useState(initData);
-  const [auth, setAuth] = useState(false);
-  const [userData, setUserData] = useState({});
+  const {accesToken, user} = useSelector(state => state.user);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,10 +20,10 @@ function Index() {
      dispatch(setToken(payload.access_token));
       getProfile(payload.access_token)
       .then((res) => {
-        setUserData(res);
+        dispatch(setUserData(res));
       });
 
-    }
+    } 
   }, []);
 
   const handleSearch = (query) => {
@@ -33,15 +32,16 @@ function Index() {
       type: "track",
       limit: 12,
     };
-    getSearchSong(auth.access_token, options).then((res) => {
+    getSearchSong(accesToken, options).then((res) => {
       setTrackList(res.tracks.items);
+      console.log(res);
     });
   };
 
   return (
     <>
-      <NavBar userData={{ ...userData, ...auth }} handleSearch={handleSearch} />
-      <Card data={trackList} userData={{...userData, ...auth}} />
+      <NavBar handleSearch={handleSearch} />
+      <Card data={trackList} />
     </>
   );
 }
