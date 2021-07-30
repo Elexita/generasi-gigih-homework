@@ -1,5 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
+import "./style.module.css";
+import { getProfile } from "../Auth/spotify";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setToken, setUserData } from "../../../Feature/user/user";
+import { useHistory } from "react-router-dom";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
 const SPOTIFY_AUTHO_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -40,12 +47,27 @@ const callback = () => {
 };
 
 const LoginPage = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const payload = getReturnedParamsFromSpotifyAuth(window.location.hash);
+    if (payload.access_token) {
+      // setAuth(payload);
+      dispatch(setToken(payload.access_token));
+      getProfile(payload.access_token).then((res) => {
+        dispatch(setUserData(res));
+        history.push("/landing-page");
+      });
+    }
+  }, [dispatch, history]);
+
   return (
     <div>
       <h1>Hello!</h1>
-      <Button to="/" onClick={loginClick}>
-        Login
-      </Button>
+      <Link to="/landing-page">
+        <Button onClick={loginClick}>Login</Button>
+      </Link>
     </div>
   );
 };
