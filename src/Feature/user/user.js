@@ -4,6 +4,7 @@ const initialState = {
   user: {},
   isAuth: false,
   accesToken: "",
+  uri: "",
 };
 
 export const userSlice = createSlice({
@@ -20,8 +21,11 @@ export const userSlice = createSlice({
     setUserData: (state, action) => {
       state.user = action.payload;
     },
+    setDataUri: (state, action) => {
+      state.uri = action.payload;
+    },
   },
 });
 
-export const { login, setToken, setUserData } = userSlice.actions;
+export const { login, setToken, setUserData, setDataUri } = userSlice.actions;
 export default userSlice.reducer;

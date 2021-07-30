@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { makePlaylist as makePlaylistAPI, addSongs } from "./spotify";
+import { makePlaylist as makePlaylistAPI, addSongToPlaylist } from "./spotify";
 
 const PagePlaylist = () => {
   const [selectSong, setSelectSong] = useState([]);
   const [isLoading, setLoading] = useState(false);
+
   const addTracks = (id) => {
     setSelectSong([...selectSong, id]);
   };
@@ -40,7 +41,7 @@ const PagePlaylist = () => {
     return makePlaylistAPI(token, userId, payload).then((res) => {
       const { id: playlist_id } = res;
 
-      return addSongs(token, playlist_id, {
+      return addSongToPlaylist(token, playlist_id, {
         uris: selectSong,
       }).then(() => {
         setSelectSong([]);

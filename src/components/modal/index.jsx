@@ -2,8 +2,9 @@ import {createPortal} from "react-dom";
 import { useEffect, useState } from "react";
 import Button from "../Button";
 import style from "./style.module.css";
-import { addSongs, makePlaylist } from "../../Pages/components/Auth/spotify";
+import { makePlaylist } from "../../Pages/components/Auth/spotify";
 import {useSelector} from "react-redux";
+import { PagePlaylist } from "../../Pages/components/Auth/pageplaylist";
 
 const ModalsPlaylist =({isOpen, onClose, isLoading}) => {
   const userID = useSelector(state => state.user.user.id);
@@ -28,7 +29,7 @@ const ModalsPlaylist =({isOpen, onClose, isLoading}) => {
         makePlaylist(accessToken, userID, payload)
         .then((res) => {
           console.log(res);
-          addSongs(accessToken, res.id, payload);
+          PagePlaylist(accessToken, res.id, payload);
         })
       };
 

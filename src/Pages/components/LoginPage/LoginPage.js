@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "../../../components/Button";
 
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
@@ -43,7 +43,9 @@ const LoginPage = () => {
   return (
     <div>
       <h1>Hello!</h1>
-      <Button onClick={loginClick}>Login</Button>
+      <Button to="/" onClick={loginClick}>
+        Login
+      </Button>
     </div>
   );
 };

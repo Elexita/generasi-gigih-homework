@@ -30,15 +30,16 @@ const makePlaylist = async (accessToken, userID, payload) => {
   return await result.json();
 };
 
-const addSongs = (accessToken, playlistId, payload) => {
-  return fetch(`${WEB_API}/playlists/${playlistId}/tracks`, {
+const addSongToPlaylist = async (accessToken, playlistId, payload) => {
+  const result = await fetch(`${WEB_API}/playlists/${playlistId}/tracks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + accessToken,
     },
     body: JSON.stringify(payload),
-  }).then((result) => result.json());
+  });
+  return await result.json();
 };
 
-export { getProfile, getSearchSong, makePlaylist, addSongs };
+export { getProfile, getSearchSong, makePlaylist, addSongToPlaylist };
