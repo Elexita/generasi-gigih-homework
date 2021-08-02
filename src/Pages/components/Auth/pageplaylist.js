@@ -1,64 +1,50 @@
 import { useState } from "react";
 import { makePlaylist as makePlaylistAPI, addSongToPlaylist } from "./spotify";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addSongs,
+  removeSong,
+  clearPlaylist,
+} from "../../../Feature/playlist/playlist";
 
-const PagePlaylist = () => {
-  const [selectSong, setSelectSong] = useState([]);
+export default function PagePlaylist() {
+  const selectedSongs = useSelector((state) => state.playlist.uris);
   const [isLoading, setLoading] = useState(false);
-
-  const addTracks = (id) => {
-    setSelectSong([...selectSong, id]);
-  };
-
-  const addSong = (id) => {
-    setSelectSong([...selectSong, id]);
-  };
-
-  const removeSong = (id) => {
-    const temp = [...selectSong];
-    const index = temp.indexOf(id);
-    if (index !== 1) {
-      temp.splice(index, 1);
-      setSelectSong(temp);
-    }
-  };
+  const dispatch = useDispatch();
 
   const checkSelect = (id) => {
-    return selectSong.includes(id);
+    return selectedSongs.includes(id);
   };
 
   const handleSelect = (id) => {
     const isSelect = checkSelect(id);
     if (!isSelect) {
-      addTracks(id);
+      dispatch(addSongs(id));
     } else {
-      removeSong(id);
+      dispatch(removeSong(id));
     }
   };
 
-  const createPlaylist = (token, userId, payload) => {
+  const makePlaylist = (token, userID, payload) => {
     setLoading(true);
-
-    return makePlaylistAPI(token, userId, payload).then((res) => {
+    return makePlaylistAPI(token, userID, payload).then((res) => {
       const { id: playlist_id } = res;
-
       return addSongToPlaylist(token, playlist_id, {
-        uris: selectSong,
+        uris: selectedSongs,
       }).then(() => {
-        setSelectSong([]);
+        dispatch(clearPlaylist());
         setLoading(false);
       });
     });
   };
 
   return {
-    selectSong,
-    createPlaylist,
-    addSong,
+    selectedSongs,
+    makePlaylist,
+    addSongs,
     removeSong,
     checkSelect,
     handleSelect,
     isLoading,
   };
-};
-
-export { PagePlaylist };
+}

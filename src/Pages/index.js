@@ -1,11 +1,11 @@
-import { useState, useEffect} from "react";
-import NavBar from "../components/NavBar/index.jsx";
-import Card from "../components/Card/index.jsx";
+import React, { useState, useEffect } from "react";
+import NavBar from "../components/NavBar/index.js";
+import Card from "../components/Card/index.js";
 import initData from "../data/SongData";
-import { getSearchSong, getProfile} from "./components/Auth/spotify";
-import { useSelector,useDispatch } from "react-redux";
-import {getReturnedParamsFromSpotifyAuth} from "./components/LoginPage/LoginPage";
-import { setToken,setUserData } from "../Feature/user/user"
+import { getSearchSong, getProfile } from "./components/Auth/spotify";
+import { useSelector, useDispatch } from "react-redux";
+import { getReturnedParamsFromSpotifyAuth } from "./components/LoginPage/LoginPage";
+import { setToken, setUserData } from "../Feature/user/user";
 
 function Index() {
   const accesToken = useSelector((state) => state.user);
