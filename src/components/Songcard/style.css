@@ -1,5 +1,5 @@
 .cards {
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
